@@ -265,11 +265,11 @@ Kamiroq yozish va chalkash xatti-harakatlarning oldini olish uchun biz bu erda v
 >
 >Qanday qilib biz `onClick={() => alert('click')}` orqali biz button bosilganda funktsiyadan foydalanayotganimizga e'tibor bering. React bu tugmachani bosgandan keyingina bu funktsiyani ishga tushiradi. `() =>` unutish va `onClick={() => alert('click')}` ni yozish odatiy xatodir va bizning komponent yangilanganda bu funktsiyani qayta-qayta ishga tushiradi.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+Keyingi navbatda biz Square komponenti bosilganligini "eslab qolishini" va uni "X" belgisi bilan to'ldirishini  amalga oshirishimiz zarur. Bularni "eslab qolish" uchun 
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+React komponentlar state ga ega bo'lish uchun o'zlarining konstruktorlarida `this.state` hosil qilish lozim. `this.state` React komponentilari uchun shaxsiy deb qaralishi lozim. Square ning hozirgi qiymatini `this.state` da saqlaymiz va Square bosilganda uni o'zgartiramiz.
 
-First, we'll add a constructor to the class to initialize the state:
+Birinchi navbatda, state ni yaratish uchun biz constructor qo'shamiz:
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -290,17 +290,19 @@ class Square extends React.Component {
 }
 ```
 
->Note
+JavaScript darslarida siz pastki sinfning konstruktorini belgilashda doimo super qo'ng'iroq qilishingiz kerak. Konstruktorga ega bo'lgan barcha React komponentlari sinflari uni super (rekvizit) qo'ng'iroq bilan boshlashlari kerak.
+>Eslatma
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>[JavaScript class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)da siz ma'lumki agar siz subclass constructor ini yaratayotgan bo'lsangiz siz doimo `super` metodini ishlating. barcha React class komponentlarining  `constructor` lari `super(props)` bilan ishlatilishi lozim.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+Endi biz Squarening `render` metodini posish paytida joriy state ning qiymatini ko'rsatishga urunib ko'ramiz:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+* `button` tagi ichidagi `this.props.value` ni `this.state.value` bilan o'zgartiring.
+* `onClick={...}` envent boshqaruvini `onClick={() => this.setState({value: 'X'})}` bilan almashtiring.
+* Yaxshiroq o'qish uchun `className` va `onClick` proplarni alohida satrlarga qo'ying.
+
+Yuqoridagi o'zgarishlardan so'ng, Square ning `render` metodidan qaygan `<button>` tag quydagi ko'rinishga ega bo'ladi:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
